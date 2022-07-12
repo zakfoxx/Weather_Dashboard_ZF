@@ -8,7 +8,7 @@ function apiCall() {
     lat +
     "&lon=" +
     lon +
-    "&appid=" +
+    "&units=imperial&appid=" +
     apiKey;
 
   fetch(requestUrl)
