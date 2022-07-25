@@ -24,6 +24,7 @@ function apiCall() {
 }
 searchButton.addEventListener("click", function () {
   console.log(citySearch.value);
+  var targetCity = citySearch.value;
   var citySearchUrl =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     citySearch.value +
@@ -53,15 +54,28 @@ searchButton.addEventListener("click", function () {
         })
         .then(function (data) {
           console.log("line 53", data);
-          searchHistory.push(citySearch.value);
-          saveStorage();
+          searchHistory.push(targetCity);
+          saveStorage(targetCity);
         });
     });
 });
 
-function saveStorage() {
-  localStorage.setItem("cityStorage", JSON.stringify(searchHistory));
+function saveStorage(targetCity) {
+  console.log(targetCity);
+  if (searchHistory.includes(targetCity)) {
+    console.log("city in storage");
+  } else {
+    localStorage.setItem("cityStorage", JSON.stringify(searchHistory));
+  }
 }
+
+// search .includes method - not saving to local storage
+
+function getStorage() {
+  searchHistory = JSON.parse(localStorage.getItem("cityStorage"));
+  console.log("searchHistory updated to", searchHistory);
+}
+getStorage();
 
 // http://api.openweathermap.org/geo/1.0/direct?q={searchCity.value},{state code},{country code}&limit={limit}&appid={API key}
 
