@@ -1,6 +1,8 @@
 var apiKey = "b06f6c7b10cb4150cdf88358e4b7eaed";
 var searchButton = document.querySelector(".submit-button");
 var citySearch = document.querySelector(".city-search");
+var searchHistory = [];
+
 function apiCall() {
   var lat = data[0];
   var lon = "";
@@ -51,9 +53,15 @@ searchButton.addEventListener("click", function () {
         })
         .then(function (data) {
           console.log("line 53", data);
+          searchHistory.push(citySearch.value);
+          saveStorage();
         });
     });
 });
+
+function saveStorage() {
+  localStorage.setItem("cityStorage", JSON.stringify(searchHistory));
+}
 
 // http://api.openweathermap.org/geo/1.0/direct?q={searchCity.value},{state code},{country code}&limit={limit}&appid={API key}
 
