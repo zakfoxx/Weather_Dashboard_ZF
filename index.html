@@ -13,24 +13,65 @@
 </head>
 
 <body>
-    <section class="container">
+
+    <h2 class="dashboard">
+        Weather Dashboard
+    </h2>
+
+    <section id="app" class="container">
+        <div class="row">
 
 
-        <h2 class="dashboard">
-            Weather Dashboard
-        </h2>
 
-        <section class="container col-9">
 
-        </section>
 
-        <div class="search col-3">
-            <input type="text" placeholder="Search City" class="city-search"></input>
-            <button class="submit-button">
-                Search for a City
-            </button>
+            <div class="search col-3">
+                <input type="text" placeholder="Search City" class="city-search"></input>
+                <button class="submit-button">
+                    Search for a City
+                </button>
+            </div>
+            <section class="col-9">
+                <div class="todays-forecast">
+                    <h3>
+                        Today's Forecast
+                    </h3>
+                    <h4>
+                        Temp:
+                    </h4>
+                    <h4>
+                        Wind:
+                    </h4>
+                    <h4>
+                        Humidity:
+                    </h4>
+                    <h4>
+                        UV Index:
+                    </h4>
+                </div>
+                <div class="five-day">
+                    <div id="day-one" class="cards">
+                        1
+                    </div>
+                    <div id="day-two" class="cards">
+                        2
+                    </div>
+                    <div id="day-three" class="cards">
+                        3
+                    </div>
+                    <div id="day-four" class="cards">
+                        4
+                    </div>
+                    <div id="day-five" class="cards">
+                        5
+                    </div>
+                </div>
+            </section>
+
         </div>
     </section>
+
+
 
     <script src="assets/script/script.js"></script>
 </body>
