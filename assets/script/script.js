@@ -2,7 +2,8 @@ var apiKey = "b06f6c7b10cb4150cdf88358e4b7eaed";
 var searchButton = document.querySelector(".submit-button");
 var citySearch = document.querySelector(".city-search");
 var searchHistory = [];
-
+var searchHistoryDiv = document.querySelector("#history");
+console.log("line six", searchHistoryDiv);
 function apiCall() {
   var lat = data[0];
   var lon = "";
@@ -53,27 +54,43 @@ searchButton.addEventListener("click", function () {
           return response.json();
         })
         .then(function (data) {
-          console.log("line 53", data);
-          searchHistory.push(targetCity);
+          console.log("line 56", data);
           saveStorage(targetCity);
+          getStorage();
         });
     });
 });
 
 function saveStorage(targetCity) {
-  console.log(targetCity);
-  if (searchHistory.includes(targetCity)) {
-    console.log("city in storage");
-  } else {
-    localStorage.setItem("cityStorage", JSON.stringify(searchHistory));
-  }
+  console.log(targetCity, "line 66");
+  searchHistory.push(targetCity);
+  console.log(searchHistory, "line 67");
+  // var cityHistory = JSON.parse(localStorage.getItem("history")) || [];
+  // var city = citySearch;
+  // if (searchHistory.includes(targetCity)) {
+  //   console.log("city in storage");
+  // } else {
+  localStorage.setItem("cityStorage", searchHistory);
+  // }
 }
+
+// figure out how to save as an array
 
 // search .includes method - not saving to local storage
 
 function getStorage() {
-  searchHistory = JSON.parse(localStorage.getItem("cityStorage"));
+  searchHistory =
+    localStorage.getItem("cityStorage") !== null
+      ? localStorage.getItem("cityStorage")
+      : [];
   console.log("searchHistory updated to", searchHistory);
+  for (let i = 0; i < searchHistory.length; i++) {
+    const el = searchHistory[i];
+    var button = document.createElement("button");
+    button.textContent = el;
+    console.log(el, searchHistory, "line 63");
+    searchHistoryDiv.append(button);
+  }
 }
 getStorage();
 
