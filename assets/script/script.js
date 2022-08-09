@@ -2,7 +2,7 @@ var apiKey = "b06f6c7b10cb4150cdf88358e4b7eaed";
 var searchButton = document.querySelector(".submit-button");
 var citySearch = document.querySelector(".city-search");
 var searchHistory = [];
-var searchHistoryDiv = document.querySelector("#history");
+var searchHistoryDiv = $("#history");
 console.log("line six", searchHistoryDiv);
 function apiCall() {
   var lat = data[0];
@@ -54,7 +54,7 @@ searchButton.addEventListener("click", function () {
           return response.json();
         })
         .then(function (data) {
-          console.log("line 56", data);
+          console.log("line 56", data.current);
           saveStorage(targetCity);
           getStorage();
         });
@@ -83,7 +83,9 @@ function getStorage() {
     localStorage.getItem("cityStorage") !== null
       ? localStorage.getItem("cityStorage")
       : [];
+  searchHistory = searchHistory.split(",");
   console.log("searchHistory updated to", searchHistory);
+  searchHistoryDiv.children().remove();
   for (let i = 0; i < searchHistory.length; i++) {
     const el = searchHistory[i];
     var button = document.createElement("button");
