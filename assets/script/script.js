@@ -3,6 +3,7 @@ var searchButton = document.querySelector(".submit-button");
 var citySearch = document.querySelector(".city-search");
 var searchHistory = [];
 var searchHistoryDiv = $("#history");
+var forecastDiv = $(".five-day");
 console.log("line six", searchHistoryDiv);
 function apiCall() {
   var lat = data[0];
@@ -68,8 +69,39 @@ function loadWeather(weather) {
   $("#today-wind").text(weather.current.wind_speed);
   $("#today-humidity").text(weather.current.humidity);
   $("#today-UV").text(weather.current.uvi);
-}
+  // set 5 day forecast
+  var forecast = weather.daily;
+  console.log(forecast);
+  forecastDiv.children().remove();
+  for (let index = 0; index < 5; index++) {
+    console.log(forecast[index]);
+    var dayDiv = $("<div>")
+      .addClass("cards pl-10")
+      .attr("id", "day-" + (index + 1));
 
+    var dateEl = $("<p>")
+      .attr("id", "date")
+      .text("day" + (index + 1));
+    dayDiv.append(dateEl);
+
+    var tempEl = $("<p>")
+      .attr("id", "temp")
+      .text("temp: " + forecast[index].temp.day);
+    dayDiv.append(tempEl);
+
+    var windEl = $("<p>")
+      .attr("id", "wind")
+      .text("wind: " + forecast[index].wind_speed);
+    dayDiv.append(windEl);
+
+    var humidityEl = $("<p>")
+      .attr("id", "humidity")
+      .text("humidity: " + forecast[index].humidity);
+    dayDiv.append(humidityEl);
+
+    forecastDiv.append(dayDiv);
+  }
+}
 function saveStorage(targetCity) {
   console.log(targetCity, "line 66");
   searchHistory.push(targetCity);
