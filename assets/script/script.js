@@ -57,9 +57,18 @@ searchButton.addEventListener("click", function () {
           console.log("line 56", data.current);
           saveStorage(targetCity);
           getStorage();
+          loadWeather(data);
         });
     });
 });
+
+function loadWeather(weather) {
+  //set today's weather
+  $("#today-temp").text(weather.current.temp);
+  $("#today-wind").text(weather.current.wind_speed);
+  $("#today-humidity").text(weather.current.humidity);
+  $("#today-UV").text(weather.current.uvi);
+}
 
 function saveStorage(targetCity) {
   console.log(targetCity, "line 66");
