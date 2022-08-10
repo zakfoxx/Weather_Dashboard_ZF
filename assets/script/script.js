@@ -28,7 +28,7 @@ searchButton.addEventListener("click", function () {
   console.log(citySearch.value);
   var targetCity = citySearch.value;
   var citySearchUrl =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     citySearch.value +
     "&appid=" +
     apiKey;
@@ -142,7 +142,7 @@ getStorage();
 // google openweather api for city lookup - use syntax from line 6 for specific call - should give input for city name's lat and lon
 // define lat/lon variables for city's data
 // copy/paste line 14 to run new city to lookup lat/lon weather
-// save to localStorage and display on HTML - display weather for city lookup and 5 day forecast 
+// save to localStorage and display on HTML - display weather for city lookup and 5 day forecast
 
 // create html elements displaying weather data -
 
